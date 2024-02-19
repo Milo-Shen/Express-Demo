@@ -1,4 +1,14 @@
 @url=http://localhost:3000
+@json=Content-Type: application/json
 
 ###
 GET {{url}}
+
+###
+POST {{url}}/api/register
+Content-Type: application/json
+
+{
+  "username": "user 1",
+  "password": "123456"
+}
