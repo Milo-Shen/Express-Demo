@@ -4,7 +4,7 @@
   "description": "express-demo",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon --env-file=dev.env server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "milo-shen",
