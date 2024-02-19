@@ -12,11 +12,23 @@ app.get('/', async (request, response) => {
 
 app.post('/api/register', async (request, response) => {
   const { username, password } = request.body;
-  const user = await User.create({
-    username: username,
-    password: password,
-  });
-  response.send('register');
+  let user = null;
+
+  try {
+    user = await User.create({
+      username: username,
+      password: password,
+    });
+  } catch (e) {
+    console.error(e);
+  }
+
+  response.send(user);
+});
+
+app.get('/api/users', async (request, response) => {
+  let users = await User.find();
+  response.send(users);
 });
 
 app.listen(3000, () => {

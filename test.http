@@ -9,6 +9,9 @@ POST {{url}}/api/register
 Content-Type: application/json
 
 {
-  "username": "user 3",
+  "username": "user 1",
   "password": "123456"
 }
+
+###
+GET {{url}}/api/users
