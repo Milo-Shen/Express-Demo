@@ -2,6 +2,7 @@ require('./models');
 
 const express = require('express');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const { User } = require('./models');
 const app = express();
@@ -49,7 +50,7 @@ app.post('/api/login', async (request, response) => {
   }
 
   response.send({
-    token: 'fake token',
+    token: jwt.sign({ id: String(user._id) }, process.env.salt),
     message: user,
   });
 });
