@@ -21,6 +21,7 @@ app.post('/api/register', async (request, response) => {
     });
   } catch (e) {
     console.error(e);
+    response.send('failed');
   }
 
   response.send(user);
