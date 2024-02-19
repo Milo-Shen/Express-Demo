@@ -24,3 +24,7 @@ Content-Type: application/json
   "username": "user1",
   "password": "123456"
 }
+
+###
+GET {{url}}/api/profile
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZDJmNDk4ODE0MjZlMWJhN2RhNjVhMyIsImV4cCI6MTcwODMzMDE1MSwiaWF0IjoxNzA4MzMwMTM2fQ.6q0EcsoLvhY73eFj3Txuf3fsMzzxOCfVRGdrOpIH0ZI

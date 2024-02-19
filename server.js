@@ -5,8 +5,24 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const { User } = require('./models');
+const { response } = require('express');
 const app = express();
 app.use(express.json());
+
+const SALT = process.env.salt;
+
+const auth = async (request, response, next) => {
+  const token = request.headers.authorization.split(' ')[1];
+  try {
+    const { id } = jwt.verify(token, SALT);
+    console.log(id);
+    request.user = User.findById(id);
+  } catch (e) {
+    console.log(e);
+    request.user = 'none';
+  }
+  next();
+};
 
 app.get('/', async (request, response) => {
   response.send('ok');
@@ -49,8 +65,15 @@ app.post('/api/login', async (request, response) => {
     });
   }
 
+  // expiresIn: 120
   response.send({
-    token: jwt.sign({ id: String(user._id) }, process.env.salt),
+    token: jwt.sign(
+      {
+        id: String(user._id),
+        exp: Math.floor(Date.now() / 1000) + 15,
+      },
+      SALT,
+    ),
     message: user,
   });
 });
@@ -58,6 +81,10 @@ app.post('/api/login', async (request, response) => {
 app.get('/api/users', async (request, response) => {
   let users = await User.find();
   response.send(users);
+});
+
+app.get('/api/profile', auth, async (request, response) => {
+  response.send('request.user');
 });
 
 app.listen(3000, () => {
