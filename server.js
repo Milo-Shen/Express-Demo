@@ -1,11 +1,12 @@
+// Import Mongoose Models
 require('./models');
 
+// Import Express
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const { User } = require('./models');
-const { response } = require('express');
 const app = express();
 app.use(express.json());
 

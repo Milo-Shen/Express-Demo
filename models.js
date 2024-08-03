@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 mongoose
-  .connect('mongodb://10.0.0.55:27017/', {
+  .connect('mongodb://10.0.0.11:27017/', {
     user: process.env.username,
     pass: process.env.password,
     dbName: process.env.db,
@@ -23,5 +23,4 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model('User', UserSchema);
 
 // User.db.dropCollection('users');
-
 module.exports = { User };
