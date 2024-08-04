@@ -2,10 +2,9 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 mongoose
-  .connect('mongodb://10.0.0.11:27017/', {
+  .connect(`mongodb://10.0.0.11:27017/${process.env.db}`, {
     user: process.env.username,
     pass: process.env.password,
-    dbName: process.env.db,
     autoIndex: true,
   })
   .then((r) => {});
